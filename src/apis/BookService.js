@@ -32,8 +32,7 @@ class BookService {
   
 
     deleteBook(id){
-        return axios.delete(`${API_URL}/delete.php`, 
-                                    { params: { id: id } });
+        return axios.post(`${API_URL}/delete.php`, id);
     }
 }
 
