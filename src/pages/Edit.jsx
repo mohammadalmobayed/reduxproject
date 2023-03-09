@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Card } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import BookService from '../apis/BookService';
 
 function Edit() {
     const user = useSelector(state=>state.isLoggedIn)
     const param = useParams()
+    const navigate = useNavigate()
     const [book, setBook] = useState([])
     // console.log(user)
     const [bookData, setBookData] = useState({
@@ -60,6 +61,7 @@ function Edit() {
         BookService.updateBook(formData).then(function(res){
           console.log(res)
           // setReRender({render: true})
+          navigate('/profile')
           
           }) 
         console.log(bookData)

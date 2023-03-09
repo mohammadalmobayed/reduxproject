@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Card } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import BookService from '../apis/BookService';
+import Header from '../componet/Header';
 
 function Test() {
     const user = useSelector(state=>state.isLoggedIn)
@@ -15,7 +17,7 @@ function Test() {
         title:"",
       });
       useEffect(()=>{
-        BookService.getUserBook({id:1}).then(function(res){
+        BookService.getUserBook({id:user.id}).then(function(res){
         setBook(res.data)
             console.log(res)
             // setReRender({render: true})
@@ -56,14 +58,38 @@ function Test() {
         BookService.createBook(formData).then(function(res){
           console.log(res)
           // setReRender({render: true})
-          
+          // render data after create book
+          BookService.getUserBook({id:user.id}).then(function(res){
+            setBook(res.data)
+                console.log(res)
+                // setReRender({render: true})
+                
+                }) 
           }) 
         console.log(bookData)
         }
+        const handelDel = (id)=>{
+          console.log({id})
+          const fd = new FormData()
+          fd.append('id', id)
+          BookService.deleteBook(fd).then(function(res){
+            // setBook(res.data)
+                console.log(res.data)
+                BookService.getUserBook({id:user.id}).then(function(res){
+                  setBook(res.data)
+                      console.log(res)
+                      // setReRender({render: true})
+                      
+                }) 
+          })
+        }
   return (
     <div>
+      <Header />
+      <h3>user name: {user.name}</h3>
+      <h3>user email: {user.email}</h3>
     <form onSubmit={handelsubmit} >
-        <h1>Update book</h1>
+        <h1>create book</h1>
         <div>
                 <input
                     type="text"
@@ -88,7 +114,7 @@ function Test() {
             Change Image
             <input type="file" name="myImage"  onChange={handleImage}/>
         </div>
-        <button type="submit">Update</button>
+        <button type="submit">create</button>
     </form>
     <div>
     {book.map(e=>(
@@ -99,7 +125,8 @@ function Test() {
         <Card.Text>
           {e.description}
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Link to={"/Edit/" + e.id} variant="primary">Edit</Link>
+        <button onClick={()=> handelDel(e.id)} variant="primary">delete</button>
       </Card.Body>
     </Card>
     ))}
