@@ -33,6 +33,7 @@ export default function SignUp() {
       password : "",
       confirmPssword : "",
     });
+
     const handlechange = (e) => {
       setdata(prev=>({...prev,[e.target.name]:e.target.value}))
       const name=e.target.name;
@@ -52,6 +53,7 @@ export default function SignUp() {
         //   seterrornamemsg ('')
         // }
         // break;
+
         case 'name':
         if (! (value.match(namereg))){
           seterrornamemsg ('Name must contain just letters !')
@@ -122,13 +124,15 @@ export default function SignUp() {
         <form onSubmit={handlesubmit}className="infoForm authForm">
         <h3>Sign up</h3>
         <div>
+
         <input
-        type="text"
+          type="text"
                 onChange={handlechange}
                 placeholder="First Name"
                 className="infoInput"
                 name="name"
             />
+
             <input
                 type="text"
                 onChange={handlechange}
@@ -136,9 +140,9 @@ export default function SignUp() {
                 className="infoInput"
                 name="lastName"
             />
+
             {accept && <p style={{color:"red"}}>{errornamemsg}</p>}
             </div>
-
 
             <div>
             <input
@@ -148,6 +152,7 @@ export default function SignUp() {
                 name="email"
                 placeholder="Email"
             />
+            
             {<div id="email-repeat" style={{display:"none",color:"red"}}>Your Email is Already Exist</div>}
             {accept && <p style={{color:"red"}}>{erroremailmsg}</p>}
             </div>

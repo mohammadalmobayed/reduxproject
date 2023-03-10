@@ -2,6 +2,21 @@
   text-align: center;
 }
 
+.books_countaner{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 80%;
+  margin: 0 auto;
+  gap: 5px;
+
+}
+.card{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 35px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

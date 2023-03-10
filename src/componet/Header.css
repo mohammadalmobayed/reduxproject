@@ -1,0 +1,25 @@
+.navbar{
+    background-color:rgb(255, 238, 238);
+    width:100% ;
+    display: flex;
+    justify-content:end;
+    height: 60px;
+    line-height: 60px;
+    
+    /* position: fixed; */
+    /* z-index: 999 ; */
+    /* padding: 10px 100px; */
+}
+
+.navbar_link {
+    
+    text-decoration:none;
+    font-size:18px;
+    font-weight:100px;
+    padding-left:10px;
+    color: black;
+    padding-left: 10px;
+    margin-right: 10px; 
+    /* background-color: yellow;  */
+}
+
