@@ -1,0 +1,28 @@
+.search_back{
+    background-color: yellow;
+    background-image: url('../img/library-img.jpg' ) ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position: center; */
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search_contunt{
+    color: white;
+    font-size: 18px;
+
+}
+.search_contunt input{
+    width: 400px;
+    height: 35px;
+    border-radius: 50px;
+    border: none;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+input:focus{
+    outline: none;
+    font-size: 18px;
+}

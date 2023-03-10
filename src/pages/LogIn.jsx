@@ -5,7 +5,7 @@
     import UserService from "../apis/UserService";
     // import { authActions } from "../store/counterSlice";
     import { useDispatch } from "react-redux";
-import { authActions } from "../store/authSlice";
+    import { authActions } from "../store/authSlice";
 
     function LogIn() {
     const navigate = useNavigate();

@@ -16,6 +16,7 @@ function Test() {
         author:"",
         title:"",
       });
+
       useEffect(()=>{
         BookService.getUserBook({id:user.id}).then(function(res){
         setBook(res.data)
@@ -24,7 +25,6 @@ function Test() {
             
             }) 
     
-
       },[])
 
       const handleChange = (e)=>{
@@ -86,10 +86,12 @@ function Test() {
   return (
     <div>
       <Header />
+      
       <h3>user name: {user.name}</h3>
       <h3>user email: {user.email}</h3>
     <form onSubmit={handelsubmit} >
         <h1>create book</h1>
+
         <div>
                 <input
                     type="text"
@@ -110,6 +112,7 @@ function Test() {
                     placeholder="description"
                 />
         </div>
+
         <div>
             Change Image
             <input type="file" name="myImage"  onChange={handleImage}/>
@@ -117,8 +120,9 @@ function Test() {
         <button type="submit">create</button>
     </form>
     <div>
+
     {book.map(e=>(
-        <Card key={e.id} style={{ width: '18rem' }}>
+      <Card key={e.id} style={{ width: '18rem' }}>
       <Card.Img variant="top" style={{width:'100px'}} src={"http://localhost/library/backend/upload/"+e.book_img} />
       <Card.Body>
         <Card.Title>{e.title}</Card.Title>
