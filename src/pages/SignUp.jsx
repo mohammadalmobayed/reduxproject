@@ -5,7 +5,7 @@ import "./Auth.css";
 import { useState } from "react";
 // import UserService from '../../apis/UserService';
 import UserService from '../apis/UserService';
-import {  NavLink, useNavigate } from "react-router-dom";
+import {  Link, NavLink, useNavigate } from "react-router-dom";
 import { UilIntercom } from "@iconscout/react-unicons";
 
 
@@ -114,7 +114,7 @@ export default function SignUp() {
         <div>
         <div className="Auth">
         <div className="a-left">
-        <UilIntercom className="loginn" />
+        {/* <UilIntercom className="loginn" /> */}
             <div className="Webname">
             <h1>The Bookshelf</h1>
         <h6>Reading a good book three times does more good for you than reading three good books</h6>
@@ -179,7 +179,7 @@ export default function SignUp() {
             </div>
 
             <div>
-                <div style={{fontSize: '12px'}}>Already have an account. <NavLink to="/logIn">Login!</NavLink></div>
+                <div style={{fontSize: '12px'}}>Already have an account. <Link to="/">Login!</Link></div>
             </div>
             <button className="button infoButton" type="submit">Sign Up</button>
         </form>

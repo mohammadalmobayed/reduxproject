@@ -24,9 +24,11 @@
           if (res.data == "user not found") {
             console.log(res.data);
           } else {
-            // console.log(res.data)
-            
-            dispatch(authActions.login(res.data))
+
+            console.log(res.data)
+            localStorage.setItem('user', JSON.stringify(res.data))
+            dispatch(authActions.login())
+
             navigate("/books");
           }
         });
@@ -36,7 +38,8 @@
         <div className="Auth">
         <div className="a-left">
 
-            <UilIntercom className="loginn" />
+            {/* <UilIntercom className="loginn" /> */}
+            {/* <img width={'400px'} src={"http://localhost/library/backend/upload/booklogo.png"} alt="" />  */}
             <div className="Webname">
             <h1>The Bookshelf</h1>
             <h6>Reading a good book three times does more good for you than reading three good books</h6>
