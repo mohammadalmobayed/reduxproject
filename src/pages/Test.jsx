@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import BookService from '../apis/BookService';
 import Header from '../componet/Header';
 import { authActions } from '../store/authSlice';
+import { FaBookOpen } from 'react-icons/fa';
+import { FaUserAlt } from 'react-icons/fa';
+import { GrMail } from "react-icons/gr";
 
 function Test() {
     // const user = useSelector(state=>state.isLoggedIn)
@@ -102,9 +105,9 @@ function Test() {
       <div style={{display:'flex'}}>
           <div className="left">
             <div className='info'>
-              <h3><FaUserAlt /> {user.name}</h3>
-              <h3>email: {user.email}</h3>
-              <h3><FaBookOpen /> {user.email}</h3>
+              <h3><FaUserAlt style={{fontSize: '20px'}} /> {user.name}</h3>
+              <h3><GrMail style={{fontSize: '20px'}} /> {user.email}</h3>
+              <h3><span style={{marginTop: '20px'}}><FaBookOpen style={{fontSize: '20px'}} /> </span>{book.length}</h3>
             </div>
             <div className='books_countaner2'>
               {book.map(e=>(
