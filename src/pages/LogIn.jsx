@@ -8,6 +8,7 @@
     import { authActions } from "../store/authSlice";
 
     function LogIn() {
+        
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -23,9 +24,11 @@
           if (res.data == "user not found") {
             console.log(res.data);
           } else {
+
             console.log(res.data)
             localStorage.setItem('user', JSON.stringify(res.data))
             dispatch(authActions.login())
+
             navigate("/books");
           }
         });
