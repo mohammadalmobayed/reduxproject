@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import BookService from '../apis/BookService';
 import Header from '../componet/Header';
+import './test.css'
 
 function Test() {
     const user = useSelector(state=>state.isLoggedIn)
@@ -87,55 +88,56 @@ function Test() {
     <div>
       <Header />
       
+    <div className="profile">
+    <div className='userinfo'>
       <h3>user name: {user.name}</h3>
       <h3>user email: {user.email}</h3>
+    </div>
     <form onSubmit={handelsubmit} >
         <h1>create book</h1>
-
         <div>
-                <input
-                    type="text"
-                    onChange={handleChange}
-                    name="title"
-                    placeholder="title"
-                />
-                <input
-                    type="text"
-                    onChange={handleChange}
-                    name="author"
-                    placeholder="author"
-                />
-                <input
-                    type="text"
-                    onChange={handleChange}
-                    name="description"
-                    placeholder="description"
-                />
+            <input
+                type="text"
+                onChange={handleChange}
+                name="title"
+                placeholder="title"
+            />
+            <input
+                type="text"
+                onChange={handleChange}
+                name="author"
+                placeholder="author"
+            />
+            <input
+                type="text"
+                onChange={handleChange}
+                name="description"
+                placeholder="description"
+            />
         </div>
-
         <div>
             Change Image
             <input type="file" name="myImage"  onChange={handleImage}/>
         </div>
         <button type="submit">create</button>
     </form>
-    <div>
+    </div>
 
-    {book.map(e=>(
-      <Card key={e.id} style={{ width: '18rem' }}>
-      <Card.Img variant="top" style={{width:'100px'}} src={"http://localhost/library/backend/upload/"+e.book_img} />
-      <Card.Body>
-        <Card.Title>{e.title}</Card.Title>
-        <Card.Text>
-          {e.description}
-        </Card.Text>
-        <Link to={"/Edit/" + e.id} variant="primary">Edit</Link>
-        <button onClick={()=> handelDel(e.id)} variant="primary">delete</button>
-      </Card.Body>
-    </Card>
-    ))}
-    
-    
+    <div className='books_countaner'  style={{marginTop:'30px'}}>
+      {book.map(e=>(
+        <Card key={e.id} style={{ width: '100%'}}>
+        <Card.Img variant="top" style={{width:'30%',marginLeft:'100px' }} src={"http://localhost/library/backend/upload/"+e.book_img} />
+        <Card.Body>
+          <Card.Title>{e.title}</Card.Title>
+          <Card.Text>
+            {e.description}
+          </Card.Text>
+      
+          <Link to={"/Edit/" + e.id} variant="primary" >Edit</Link>
+          <button onClick={()=> handelDel(e.id)} variant="primary">delete</button>
+        </Card.Body>
+      </Card>
+      ))}
     </div>
     </div>
   )

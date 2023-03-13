@@ -1,0 +1,17 @@
+.profile{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+.profile form input{
+    padding: 5px;
+    border-radius: 3px;
+}
+.profile form input:focus{
+    outline: none;
+}
+
+.userinfo{
+    background-color:rgb(255, 238, 238);
+    padding: 20px;
+}
