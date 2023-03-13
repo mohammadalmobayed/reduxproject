@@ -1,5 +1,6 @@
 .navbar{
     background-color:rgb(255, 238, 238);
+    /* background-color: yellow; */
     width:100% ;
     display: flex;
     justify-content:end;
