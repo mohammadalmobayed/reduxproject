@@ -24,7 +24,8 @@
             console.log(res.data);
           } else {
             console.log(res.data)
-            dispatch(authActions.login(res.data))
+            localStorage.setItem('user', JSON.stringify(res.data))
+            dispatch(authActions.login())
             navigate("/books");
           }
         });

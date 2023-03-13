@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Card } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
 import BookService from '../apis/BookService'
 import Header from '../componet/Header'
 import Search from '../componet/Search'
+import { authActions } from '../store/authSlice'
 // import SingleBook from '../componet/SingleBook'
 
 
 
 
 export default function Books() {
+  const user = JSON.parse(localStorage.getItem('user'))
+    const dispatch = useDispatch();
     const [book, setBook] = useState([])
     const [sr,setSr]=useState('')
 
     useEffect(()=>{
+      if(user){
+        dispatch(authActions.login())
+      }
         BookService.getBook().then(function(res){
         setBook(res.data)
             console.log(res)

@@ -10,6 +10,14 @@
   gap: 5px;
 
 }
+.books_countaner2{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 80%;
+  margin: 0 auto;
+  gap: 5px;
+  margin-top: 10px;
+}
 .card{
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   width: 80%;
@@ -20,6 +28,41 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+.info{
+  width: 80%;
+  margin: 0 auto;
+  height: 90px;
+  background-color: rgb(255, 238, 238);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 40px;
+  text-align: center;
+  /* padding: 2px; */
+}
+.right{
+  margin-top: 40px;
+  padding: 10px;
+  background-color:rgb(255, 238, 238);
+}
+.bookInput{
+  width: 80%;
+  height: 30px;
+  margin-top: 10px;
+  border: none;
+  border-bottom: 1px solid #000;
+  background-color:transparent;
+  /* margin: 0 auto; */
+}
+.bookBtn{
+  margin-top: 10px;
+  background-color: blue;
+  border: none;
+  width: 100px;
+  padding: 10px;
+  color: #fff;
+  border-radius: 5px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

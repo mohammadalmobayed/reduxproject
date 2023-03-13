@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Card } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import BookService from '../apis/BookService';
 import Header from '../componet/Header';
+import { authActions } from '../store/authSlice';
 
 function Test() {
-    const user = useSelector(state=>state.isLoggedIn)
+    // const user = useSelector(state=>state.isLoggedIn)
+    const user = JSON.parse(localStorage.getItem('user'))
+    const dispatch = useDispatch();
     const [book, setBook] = useState([])
     // console.log(user)
     const [bookData, setBookData] = useState({
@@ -18,6 +21,9 @@ function Test() {
       });
 
       useEffect(()=>{
+        if(user){
+          dispatch(authActions.login())
+        }
         BookService.getUserBook({id:user.id}).then(function(res){
         setBook(res.data)
             console.log(res)
@@ -63,6 +69,13 @@ function Test() {
             setBook(res.data)
                 console.log(res)
                 // setReRender({render: true})
+                setBookData({
+                  myImage:"",
+                  description:"",
+                  user_id:user.id,
+                  author:"",
+                  title:"",
+                })
                 
                 }) 
           }) 
@@ -86,57 +99,69 @@ function Test() {
   return (
     <div>
       <Header />
-      
-      <h3>user name: {user.name}</h3>
-      <h3>user email: {user.email}</h3>
-    <form onSubmit={handelsubmit} >
-        <h1>create book</h1>
-
-        <div>
-                <input
-                    type="text"
-                    onChange={handleChange}
-                    name="title"
-                    placeholder="title"
-                />
-                <input
-                    type="text"
-                    onChange={handleChange}
-                    name="author"
-                    placeholder="author"
-                />
-                <input
-                    type="text"
-                    onChange={handleChange}
-                    name="description"
-                    placeholder="description"
-                />
-        </div>
-
-        <div>
-            Change Image
-            <input type="file" name="myImage"  onChange={handleImage}/>
-        </div>
-        <button type="submit">create</button>
-    </form>
-    <div>
-
-    {book.map(e=>(
-      <Card key={e.id} style={{ width: '18rem' }}>
-      <Card.Img variant="top" style={{width:'100px'}} src={"http://localhost/library/backend/upload/"+e.book_img} />
-      <Card.Body>
-        <Card.Title>{e.title}</Card.Title>
-        <Card.Text>
-          {e.description}
-        </Card.Text>
-        <Link to={"/Edit/" + e.id} variant="primary">Edit</Link>
-        <button onClick={()=> handelDel(e.id)} variant="primary">delete</button>
-      </Card.Body>
-    </Card>
-    ))}
-    
-    
-    </div>
+      <div style={{display:'flex'}}>
+          <div className="left">
+            <div className='info'>
+              <h3><FaUserAlt /> {user.name}</h3>
+              <h3>email: {user.email}</h3>
+              <h3><FaBookOpen /> {user.email}</h3>
+            </div>
+            <div className='books_countaner2'>
+              {book.map(e=>(
+                <Card key={e.id} style={{ width: '100%' }}>
+                <Card.Img variant="top" style={{width:'35%', marginLeft: '100px'}} src={"http://localhost/library/backend/upload/"+e.book_img} />
+                <div style={{padding: '20px', paddingBottom: '10px'}}>
+                  <Card.Body>
+                    <Card.Title>{e.title}</Card.Title>
+                    <Card.Text>
+                      {e.description}
+                    </Card.Text>
+                    <div style={{display: 'flex', justifyContent:'space-around'}}>
+                      <Link style={{textDecoration: 'none', padding:'10px', width: '50px', background: 'blue', color:'#fff', borderRadius:'5px', textAlign:'center'}} to={"/Edit/" + e.id} variant="primary">Edit</Link>
+                      <button  style={{border:'none', padding:'10px', width: '50px', background: 'red', color:'#fff', borderRadius:'5px'}} onClick={()=> handelDel(e.id)} variant="primary">delete</button>
+                    </div>
+                  </Card.Body>
+                </div>
+              </Card>
+              ))}
+            </div>
+          </div>
+          <form className='right' onSubmit={handelsubmit} >
+            <h1>create book</h1>
+            <div>
+              <input
+                  className='bookInput'
+                  type="text"
+                  onChange={handleChange}
+                  name="title"
+                  placeholder="title"
+              />
+            </div>
+            <div>
+            <input
+                className='bookInput'
+                type="text"
+                onChange={handleChange}
+                name="author"
+                placeholder="author"
+            />
+            </div>
+            <div>
+            <input
+                className='bookInput'
+                type="text"
+                onChange={handleChange}
+                name="description"
+                placeholder="description"
+            />
+            </div>
+            <div>
+                Change Image
+                <input type="file" name="myImage"  onChange={handleImage}/>
+            </div>
+            <button type="submit" className='bookBtn' >create</button>
+        </form>
+      </div>
     </div>
   )
 }
