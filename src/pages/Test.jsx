@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import BookService from '../apis/BookService';
 import Header from '../componet/Header';
+import "./Test.css";
+
 
 function Test() {
     const user = useSelector(state=>state.isLoggedIn)
@@ -86,13 +88,13 @@ function Test() {
   return (
     <div>
       <Header />
-      
-      <h3>user name: {user.name}</h3>
+      <div className='head'>
+      <h3> name: {user.name}</h3>
       <h3>user email: {user.email}</h3>
-    <form onSubmit={handelsubmit} >
-        <h1>create book</h1>
-
-        <div>
+      </div>
+      <form className='forms' onSubmit={handelsubmit} >
+      <h1>create book</h1>
+      <div>
                 <input
                     type="text"
                     onChange={handleChange}
