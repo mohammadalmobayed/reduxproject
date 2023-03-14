@@ -67,38 +67,45 @@ function Edit() {
         console.log(bookData)
         }
   return (
-    <div>
-    <form onSubmit={handelsubmit} >
-        <h1>Update book</h1>
-        <div>
-                <input
-                    type="text"
-                    onChange={handleChange}
-                    name="title"
-                    value={bookData.title}
-                    placeholder="title"
-                />
-                <input
-                    type="text"
-                    onChange={handleChange}
-                    name="author"
-                    defaultValue={bookData.author}
-                    placeholder="author"
-                />
-                <input
-                    type="text"
-                    onChange={handleChange}
-                    name="description"
-                    value={bookData.description}
-                    placeholder="description"
-                />
-        </div>
-        <div>
-            Change Image
-            <input type="file" name="myImage"  onChange={handleImage}/>
-        </div>
-        <button type="submit">Update</button>
-    </form>
+    <div className='bookUpdate'>
+      <form  className='udpateForm' onSubmit={handelsubmit} >
+          <h1 style={{textAlign: 'center'}}>Update book</h1>
+          <div>
+            <input
+                className='updateInput'
+                type="text"
+                onChange={handleChange}
+                name="title"
+                value={bookData.title}
+                placeholder="title"
+            />
+          </div>
+          <div>
+            <input
+                className='updateInput'
+                type="text"
+                onChange={handleChange}
+                name="author"
+                defaultValue={bookData.author}
+                placeholder="author"
+            />
+          </div>
+          <div>
+            <input
+                className='updateInput'
+                type="text"
+                onChange={handleChange}
+                name="description"
+                value={bookData.description}
+                placeholder="description"
+            />
+          </div>
+          <div>
+              <label htmlFor="" style={{display:'block', marginTop: '30px'}}>Change Image</label>
+              <input type="file" name="myImage"  onChange={handleImage}/>
+          </div>
+          <button className='updateBtn' type="submit">Update</button>
+      </form>
     </div>
   )
 }
